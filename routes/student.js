@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+const Student_controllers = require('../controllers/Student');
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('student', { title: 'Search Results for Student Class' });
-});
+router.get('/',Student_controllers.Student_view_all_Page);
 
 module.exports = router;

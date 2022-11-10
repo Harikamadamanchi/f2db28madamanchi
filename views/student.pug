@@ -2,12 +2,11 @@ extends layout
 
 block content
   h1= title
-  - var results = [{"Student_Name": "Harika", "Student_Class": "Masters", "Student_Rank": 1, "Student_Age": 22,"Student_Number": 100},{"Student_Name": "Madamanchi", "Student_Class": "Graduation", "Student_Rank": 2, "Student_Age": 18, "Student_Number": 101},{"Student_Name": "Mohan", "Student_Class": "Masters", "Student_Rank": 3, "Student_Age": 26,"Student_Number": 102}]
+  - var results = stu_results
   div.container-fluid 
     div.row 
         each item, index in results
-            div.col-sm-4 Student Name: #{item["Student_Name"]} <br> Student Class: #{item["Student_Class"]} <br> Student Rank: #{item["Student_Rank"]} <br> Student Age: #{item["Student_Age"]}<br> Student Number: #{item["Student_Number"]}
-            div.col-sm-4(onclick=`buy(${index})`) Student Name: #{item["Student_Name"]} <br> Student Class: #{item["Student_Class"]} <br> Student Rank: #{item["Student_Rank"]} <br> Student Age: #{item["Student_Age"]} <br> Student Number: #{item["Student_Number"]}
+            div.col-sm-4(onclick=`buy(${index})`) Student Name: #{item["Student_Name"]} <br> Student Class: #{item["Student_Class"]} <br> Student Rank: #{item["Student_Rank"]} <br> Student Age: #{item["Student_Age"]}<br> Student Number: #{item["Student_Number"]}
 
   script.
     function buy(index) {
