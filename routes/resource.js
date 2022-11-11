@@ -27,4 +27,7 @@ router.get('/Student/:id', Student_controller.Student_detail);
 // GET request for list of all Student items. 
 router.get('/Student', Student_controller.Student_list); 
 
+router.get('/Student/:id', Student_controller.Student_detail); 
+
 module.exports = router; 
+
