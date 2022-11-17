@@ -1,0 +1,60 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let studentid = toShow._id 
+    - let Student_Name = toShow.Student_Name 
+    - let Student_Class = toShow.Student_Class 
+    - let Student_Rank = toShow.Student_Rank
+    - let Student_Age = toShow.Student_Age 
+    - let Student_Number = toShow.Student_Number 
+    - let actionid = "/resource/student/" + studentid 
+    script let actionid = "#{actionid}" 
+    div 
+      div.row 
+        div(class='studentAttr mr-3') Student ID is: 
+        div #{studentid} 
+      div.row 
+        div(class='studentAttr mr-3') Student Name is: 
+        div #{Student_Name} 
+      div.row 
+        div(class='studentAttr mr-3') Student Class is: 
+        div #{Student_Class} 
+      div.row 
+        div(class='studentAttr mr-3') Student Rank is: 
+        div #{Student_Rank}
+      div.row 
+        div(class='studentAttr mr-3') Student Age is: 
+        div #{Student_Age} 
+      div.row 
+        div(class='studentAttr mr-3') Student Number is: 
+        div #{Student_Number} 
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel 
+ 
+  script. 
+    function cancel() { 
+      // Go back to the home page for the costume collection 
+      window.location.href='/student' 
+    } 
+  script. 
+    function deleteOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'DELETE'      
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Delete succeded") 
+        window.location.href='/student' 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Delete failed " + error ) 
+      }); 
+    }

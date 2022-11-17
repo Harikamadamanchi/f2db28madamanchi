@@ -1,0 +1,40 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  form(id='StudentForm', action="/resource/Student", method="POST") 
+    div.form-group
+        label.studentAttr(for='Student_Name') Student Name
+        input#StudentName(type='text', name='Student_Name') 
+    div.form-group
+        label.studentAttr(for='Student_Class') Student Class 
+        input#StudentClass(type='text', name='Student_Class') 
+    div.form-group
+        label.studentAttr(for='Student_Rank') Student Rank
+        input#StudentRank(type='Number', name='Student_Rank')
+    div.form-group
+        label.studentAttr(for='Student_Age') Student Age
+        input#StudentAge(type='Number', name='Student_Age')
+    div.form-group
+        label.studentAttr(for='Student_Number') Student Number
+        input#StudentNumber(type='Number', name='Student_Number')         
+    input(type="submit")
+ 
+  script. 
+    document.forms['StudentForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'POST', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Save succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Save failed " + error ) 
+      }); 
+    });
