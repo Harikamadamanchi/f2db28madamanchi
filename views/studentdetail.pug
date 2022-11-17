@@ -1,0 +1,30 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let studentid = toShow._id 
+  - let Student_Name = toShow.Student_Name 
+  - let Student_Class = toShow.Student_Class 
+  - let Student_Rank = toShow.Student_Rank
+  - let Student_Age = toShow.Student_Age 
+  - let Student_Number = toShow.Student_Number 
+  div 
+    div.row 
+      div(class='studentAttr mr-3') Student ID is: 
+      div #{studentid} 
+    div.row 
+      div(class='studentAttr mr-3') Student Name is: 
+      div #{Student_Name} 
+    div.row 
+      div(class='studentAttr mr-3') Student Class is: 
+      div #{Student_Class} 
+    div.row 
+      div(class='studentAttr mr-3') Student Rank is: 
+      div #{Student_Rank}
+    div.row 
+      div(class='studentAttr mr-3') Student Age is: 
+      div #{Student_Age} 
+    div.row 
+      div(class='studentAttr mr-3') Student Number is: 
+      div #{Student_Number}  
