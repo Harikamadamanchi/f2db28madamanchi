@@ -2,50 +2,51 @@ extends layout
  
 block content 
   h1= title 
- 
-  - let studentid = toShow._id 
-  - let Student_Name = toShow.Student_Name 
-  - let Student_Class = toShow.Student_Class 
-  - let Student_Rank = toShow.Student_Rank
-  - let Student_Age = toShow.Student_Age 
-  - let Student_Number = toShow.Student_Number 
+  if (toShow == null) 
+    h2 No instance to update 
+  else
+    - let Student_Name = toShow.Student_Name 
+    - let Student_Class = toShow.Student_Class 
+    - let Student_Rank = toShow.Student_Rank
+    - let Student_Age = toShow.Student_Age 
+    - let Student_Number = toShow.Student_Number 
    
-  div.row(class='mb-2') 
-    div.mr-1 ID is 
-    div #{studentid} 
-  - let actionid = "/resource/student/" + studentid 
-  form(id='StudentForm', action= actionid, method="PUT") 
-    div.form-group 
-        label.studentAttr(for='Student_Name') Student Name 
-        input#costume_type(type='text', name='Student_Name', value= Student_Name ) 
-    div.form-group 
-        label.studentAttr(for='Student_Class') Student Class 
-        input#size(type='text', name='Student_Class', value= Student_Class ) 
-    div.form-group 
-        label.studentAttr(for='Student_Rank') Student Rank 
-        input#cost(type='number', name='Student_Rank', value= Student_Rank )
-    div.form-group 
-        label.studentAttr(for='Student_Age') Student Age
-        input#cost(type='number', name='Student_Age', value= Student_Age )
-    div.form-group 
-        label.studentAttr(for='Student_Number') Student Number 
-        input#cost(type='number', name='Student_Number', value= Student_Number )
-    input(type="submit") 
+    div.row(class='mb-2') 
+        div.mr-1 ID is 
+        div #{studentid} 
+    - let actionid = "/resource/student/" + studentid 
+    form(id='StudentForm', action= actionid, method="PUT") 
+        div.form-group 
+            label.studentAttr(for='Student_Name') Student Name 
+            input#costume_type(type='text', name='Student_Name', value= Student_Name ) 
+        div.form-group 
+            label.studentAttr(for='Student_Class') Student Class 
+            input#size(type='text', name='Student_Class', value= Student_Class ) 
+        div.form-group 
+            label.studentAttr(for='Student_Rank') Student Rank 
+            input#cost(type='number', name='Student_Rank', value= Student_Rank )
+        div.form-group 
+            label.studentAttr(for='Student_Age') Student Age
+            input#cost(type='number', name='Student_Age', value= Student_Age )
+        div.form-group 
+            label.studentAttr(for='Student_Number') Student Number 
+            input#cost(type='number', name='Student_Number', value= Student_Number )
+        input(type="submit") 
  
-  script. 
-    document.forms['StudentForm'].addEventListener('submit', (event) => { 
-      event.preventDefault(); 
-      // TODO do something here to show user that form is being submitted 
-      fetch(event.target.action, { 
-        method: 'PUT', 
-        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
-      }).then((resp) => { 
-        return resp.json(); // or resp.text() or whatever the server sends 
-      }).then((body) => { 
-        alert("Update succeded") 
-        // TODO handle body 
-      }).catch((error) => { 
+    script. 
+        document.forms['StudentForm'].addEventListener('submit', (event) => { 
+        event.preventDefault(); 
+        // TODO do something here to show user that form is being submitted 
+        fetch(event.target.action, { 
+            method: 'PUT', 
+            body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+        }).then((resp) => { 
+            return resp.json(); // or resp.text() or whatever the server sends 
+        }).then((body) => { 
+            alert("Update succeded") 
+            // TODO handle body 
+        }).catch((error) => { 
         // TODO handle error 
-        alert("Update failed " + error ) 
-      }); 
-    }); 
+            alert("Update failed " + error ) 
+        }); 
+        }); 
