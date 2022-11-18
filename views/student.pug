@@ -4,11 +4,15 @@ block content
   h1= title
   - var results = stu_results
   div.container-fluid 
-    div.row 
+    div(class="row m-1")
         each item, index in results
-            div.col-sm-4(onclick=`buy(${index})`) Student Name: #{item["Student_Name"]} <br> Student Class: #{item["Student_Class"]} <br> Student Rank: #{item["Student_Rank"]} <br> Student Age: #{item["Student_Age"]}<br> Student Number: #{item["Student_Number"]}
-
+          - let destination = `dispatch(\"/student/update?id=${item._id}\")`
+          div(class="col-sm-2", class="m-1", width="500px") Student Name:#{item.Student_Name}, Student Class:#{item.Student_Class}, Student Rank:#{item.Student_Rank}, Student Age:#{item.Student_Age}, Student Number:#{item.Student_Number}
+        button.btn( class="btn-primary ml-1", onclick= destination) Update 
   script.
     function buy(index) {
       alert("You Selected student " + index)
     }
+    function dispatch(path){ 
+      window.location.href=path 
+    } 
